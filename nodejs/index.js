@@ -1,5 +1,6 @@
 const express = require('express');
 const sendsms = require("./sms")
+const readXlsxFile = require('read-excel-file/node');
 const app = express();
 
 
@@ -12,6 +13,15 @@ app.get('/v1/process',(req,res) => {
     res.status(200).send({message:'processed'});
 })
 
+async function excelParser(){
+    
+
+    // File path.
+    const rows = await readXlsxFile('../data.xlsx');
+    print(rows)
+}
+
 // sendsms("09392115688", "تست ارسال به تلفن همراه");
+excelParser()
 app.listen(5000,() => console.log('Listening to port 5000 ... '));
 
