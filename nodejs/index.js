@@ -1,5 +1,7 @@
 const express = require('express');
+const sendsms = require("./sms")
 const app = express();
+
 
 app.use(express.json())
 
@@ -10,4 +12,6 @@ app.get('/v1/process',(req,res) => {
     res.status(200).send({message:'processed'});
 })
 
-app.listen(5000,() => console.log('Listening to port 5000 ... '))
+// sendsms("09392115688", "تست ارسال به تلفن همراه");
+app.listen(5000,() => console.log('Listening to port 5000 ... '));
+
