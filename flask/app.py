@@ -1,5 +1,6 @@
 from flask import Flask,jsonify,request
 from config import Sendtoken,LineNumber
+from pandas import read_excel
 import requests
 app = Flask(__name__)
 
@@ -42,9 +43,23 @@ def sendsms(sms_token,receptor,message):
         r = requests.post(url,headers=header,data=payload)
         print(r.json()["IsSuccessful"])
 
+
+
+def import_database_from_exel(filepath):
+    df = read_excel(filepath,0)
+    for index,(line,ref,desc,start_serial,end_serial,date) in df.iterrows():
+        print(line, ref, desc, start_serial, end_serial, date)
+
+    df = read_excel(filepath, 1)
+    for index, (failed_serial_row) in df.iterrows():
+        failed_serial = failed_serial_row[0]
+        print(failed_serial)
+
+
 def check_serial():
     pass
 
 if __name__ == "__main__":
     # sendsms(sms_token,"09392115688","تست ارسال به تلفن همراه")
+    import_database_from_exel('../data.xlsx')
     app.run("0.0.0.0",5000,debug=True)
