@@ -1,7 +1,8 @@
 from flask import Flask,jsonify,request
-from config import Sendtoken,LineNumber
+from config import Sendtoken, LineNumber, DATABASE_FILE_PATH
 from pandas import read_excel
 import requests
+import sqlite3
 app = Flask(__name__)
 
 sms_token = None
@@ -46,15 +47,52 @@ def sendsms(sms_token,receptor,message):
 
 
 def import_database_from_exel(filepath):
-    df = read_excel(filepath,0)
-    for index,(line,ref,desc,start_serial,end_serial,date) in df.iterrows():
-        print(line, ref, desc, start_serial, end_serial, date)
 
+
+
+
+    conn = sqlite3.connect(DATABASE_FILE_PATH)
+    cur = conn.cursor()
+    cur.execute('DROP TABLE IF EXISTS serials')
+    cur.execute("""CREATE TABLE IF NOT EXISTS serials (
+        id INTEGER PRIMARY KEY,
+        ref TEXT,
+        desc TEXT,
+        start_serial TEXT,
+        end_serial TEXT,
+        date DATE);""")
+        
+
+
+
+    df = read_excel(filepath,0)
+    serial_counter = 0
+    for index,(line,ref,desc,start_serial,end_serial,date) in df.iterrows():
+        query = f'INSERT INTO serials VALUES("{line}", "{ref}", "{desc}", "{start_serial}", "{end_serial}", "{date}");'
+        cur.execute(query)
+        if serial_counter % 10:
+            conn.commit()
+        serial_counter += 1
+    conn.commit()
+
+    cur.execute('DROP TABLE IF EXISTS invalids')
+    cur.execute("""CREATE TABLE IF NOT EXISTS invalids (
+        invalid_serial TEXT PRIMARY KEY)""")
+    conn.commit()
+    invalid_counter = 0
     df = read_excel(filepath, 1)
     for index, (failed_serial_row) in df.iterrows():
         failed_serial = failed_serial_row[0]
-        print(failed_serial)
+        
+        query = f'INSERT INTO invalids VALUES("{failed_serial}")'
+        cur.execute(query)
 
+        if invalid_counter % 10:
+            conn.commit()
+        invalid_counter += 1
+    conn.commit()
+
+    conn.close()
 
 def check_serial():
     pass
