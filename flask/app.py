@@ -6,10 +6,14 @@ app = Flask(__name__)
 
 @app.route('/v1/process')
 def process():
-    text = request.args.get('text')
-    print(text)
-    data = {"message":"ok",
-            "text":text}
+    """
+    This is a callback from sms.ir
+    """
+    
+    message = request.args.get('text')
+    sender = request.args.get('from') 
+    print(f'received {message} from {sender}')
+    data = {"message":"processed"}
     return jsonify(data), 200
 
 def sendsms():
