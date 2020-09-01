@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="02847419-9674-49e8-b587-05ed8bd7b7f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/excelToDb.js" beforeDir="false" afterPath="$PROJECT_DIR$/excelToDb.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +67,7 @@
       <workItem from="1598951907084" duration="125000" />
       <workItem from="1598952210764" duration="1738000" />
       <workItem from="1598955112242" duration="2538000" />
+      <workItem from="1598957965806" duration="457000" />
     </task>
     <servers />
   </component>

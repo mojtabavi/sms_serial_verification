@@ -9,17 +9,7 @@ app = Flask(__name__)
 sms_token = None
 
 
-@app.route('/v1/process')
-def process():
-    """
-    This is a callback from sms.ir
-    """
 
-    message = normalize_string(request.args.get('text'))
-    sender = request.args.get('from') 
-    print(f'received {message} from {sender}')
-    data = {"message":"processed"}
-    return jsonify(data), 200
 
 def get_token(apikey,secretkey):
     url = "https://RestfulSms.com/api/Token"
@@ -44,8 +34,6 @@ def sendsms(sms_token,receptor,message):
         }
         r = requests.post(url,headers=header,data=payload)
         print(r.json()["IsSuccessful"])
-
-
 
 def import_database_from_exel(filepath,filepath_invalid):
 
@@ -99,10 +87,44 @@ def normalize_string(str):
     str = re.sub(r'\W+', '',str)
     return str
 
-def check_serial():
-    pass
+def check_serial(serial):
+    """this function will get one serial number and return  appropriate 
+    answer to that , after consuling the db """
+
+    conn = sqlite3.connect(DATABASE_FILE_PATH)
+    cur = conn.cursor()
+
+    query = f"SELECT * FROM invalids WHERE invalid_serial == '{serial}'"
+    results = cur.execute(query)
+    if len(results.fetchall()):
+        return "the serial is among failed ones" #TODO return better string
+
+    query = f"SELECT * FROM serials WHERE start_serial < '{serial}' AND end_serial > '{serial}' ;"
+    results = cur.execute(query)
+    if len(results.fetchall()) == 1:
+        return 'I found your serial' #TODO return better string 
+
+    return "it was not in the db"
+
+@app.route('/v1/process')
+def process():
+    """
+    This is a callback from sms.ir
+    """
+
+    message = normalize_string(request.args.get('text'))
+    sender = request.args.get('from') 
+    print(f'received {message} from {sender}') #TODO logging
+
+    answer = check_serial(message)
+
+    data = {"message":"processed"}
+    return jsonify(data), 200
+
+
 
 if __name__ == "__main__":
     # sendsms(sms_token,"09392115688","تست ارسال به تلفن همراه")
     import_database_from_exel('../data.xlsx','../invalid.xlsx')
+    print(check_serial('JJ1000002'))
     app.run("0.0.0.0",5000,debug=True)
