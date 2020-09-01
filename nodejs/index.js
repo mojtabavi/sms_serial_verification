@@ -1,5 +1,5 @@
 const express = require('express');
-const sendsms = require("./sms")
+const {sendMessage,get_new_token} = require("./sms")
 const xlsxFile = require("read-excel-file/node");
 const sqlite3 = require("sqlite3").verbose();
 const app = express();
@@ -7,10 +7,12 @@ const app = express();
 
 app.use(express.json())
 
+
 app.get('/v1/process',(req,res) => {
     const message = req.query.text;
     const sender = req.query.from;
     console.log(`receive ${message} from ${sender}`);
+    sendMessage(sender, `ما پیام شما را دریافت کردیم`);
     res.status(200).send({message:'processed'});
 })
 
