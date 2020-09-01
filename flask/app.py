@@ -1,6 +1,7 @@
 from flask import Flask,jsonify,request
 from config import Sendtoken, LineNumber, DATABASE_FILE_PATH
 from pandas import read_excel
+import re
 import requests
 import sqlite3
 app = Flask(__name__)
@@ -14,7 +15,7 @@ def process():
     This is a callback from sms.ir
     """
 
-    message = request.args.get('text')
+    message = normalize_string(request.args.get('text'))
     sender = request.args.get('from') 
     print(f'received {message} from {sender}')
     data = {"message":"processed"}
@@ -48,9 +49,6 @@ def sendsms(sms_token,receptor,message):
 
 def import_database_from_exel(filepath):
 
-
-
-
     conn = sqlite3.connect(DATABASE_FILE_PATH)
     cur = conn.cursor()
     cur.execute('DROP TABLE IF EXISTS serials')
@@ -62,15 +60,14 @@ def import_database_from_exel(filepath):
         end_serial TEXT,
         date DATE);""")
         
-
-
-
     df = read_excel(filepath,0)
     serial_counter = 0
     for index,(line,ref,desc,start_serial,end_serial,date) in df.iterrows():
+        start_serial = normalize_string(start_serial)
+        end_serial = normalize_string(end_serial)
         query = f'INSERT INTO serials VALUES("{line}", "{ref}", "{desc}", "{start_serial}", "{end_serial}", "{date}");'
         cur.execute(query)
-        if serial_counter % 10:
+        if serial_counter % 10 == 0:
             conn.commit()
         serial_counter += 1
     conn.commit()
@@ -81,18 +78,26 @@ def import_database_from_exel(filepath):
     conn.commit()
     invalid_counter = 0
     df = read_excel(filepath, 1)
-    for index, (failed_serial_row) in df.iterrows():
-        failed_serial = failed_serial_row[0]
-        
+    for index, (failed_serial, ) in df.iterrows():   
         query = f'INSERT INTO invalids VALUES("{failed_serial}")'
         cur.execute(query)
 
-        if invalid_counter % 10:
+        if invalid_counter % 10 == 0:
             conn.commit()
         invalid_counter += 1
     conn.commit()
 
     conn.close()
+
+
+def normalize_string(str):
+    from_char = "۱۲۳۴۵۶۷۸۹۰"
+    to_char = "1234567890"
+    for i in range(len(from_char)):
+        str = str.replace(from_char[i],to_char[i])
+    str = str.upper()
+    str = re.sub(r'\W+', '',str)
+    return str
 
 def check_serial():
     pass
