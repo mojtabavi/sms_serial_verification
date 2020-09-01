@@ -1,5 +1,6 @@
 const xlsxFile = require("read-excel-file/node");
 const sqlite3 = require("sqlite3").verbose();
+const normalize = require('./normalize')
 
 function convert_excel_to_db() {
     let db = new sqlite3.Database("../data.sqlite", sqlite3.OPEN_READWRITE, (err) => {
@@ -18,6 +19,10 @@ function convert_excel_to_db() {
         rows.forEach(row => {
             // let placeholders = `(${row.map((value) => value).join(',')})`
             // let sql = "INSERT INTO serials VALUES " + placeholders;
+            // normalize the start and end serials
+            row[3] = normalize(row[3])
+            row[4] = normalize(row[4])
+            //
             db.run(`INSERT INTO serials VALUES(?,?,?,?,?,?)`, row, function (err) {
                 if (err) {
                     return console.log(err.message);

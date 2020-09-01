@@ -19,8 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9dbd5e74-50df-4748-a92d-38a26b70a5ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="02847419-9674-49e8-b587-05ed8bd7b7f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/normalize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excelToDb.js" beforeDir="false" afterPath="$PROJECT_DIR$/excelToDb.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1gu0IuqdIiBlxBd03BAtQvEE9g9" />
+  <component name="ProjectId" id="1gu6051CO7Kq4EBsXa4WE0C7bxD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,17 +43,33 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.JavaScript" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Node.js.normalize.js">
+    <configuration name="Unnamed" type="NodeJSConfigurationType" nameIsGenerated="true" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="normalize.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/normalize.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.normalize.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9dbd5e74-50df-4748-a92d-38a26b70a5ea" name="Default Changelist" comment="" />
-      <created>1598949095659</created>
+      <changelist id="02847419-9674-49e8-b587-05ed8bd7b7f1" name="Default Changelist" comment="" />
+      <created>1598951905224</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1598949095659</updated>
-      <workItem from="1598949097082" duration="188000" />
+      <updated>1598951905224</updated>
+      <workItem from="1598951907084" duration="125000" />
+      <workItem from="1598952210764" duration="1643000" />
     </task>
     <servers />
   </component>
@@ -67,5 +86,44 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="417" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598952016946">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="417" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1598952016946" />
+    <state width="1896" height="272" key="GridCell.Tab.0.bottom" timestamp="1598953316721">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1896" height="272" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1598953316721" />
+    <state width="1896" height="272" key="GridCell.Tab.0.center" timestamp="1598953316720">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1896" height="272" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1598953316720" />
+    <state width="1896" height="272" key="GridCell.Tab.0.left" timestamp="1598953316720">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1896" height="272" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1598953316720" />
+    <state width="1896" height="272" key="GridCell.Tab.0.right" timestamp="1598953316721">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1896" height="272" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1598953316721" />
+    <state x="0" y="209" width="1039" height="737" key="SettingsEditor" timestamp="1598953853509">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="0" y="209" width="1039" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1598953853509" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/excelToDb.js</url>
+          <line>27</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
