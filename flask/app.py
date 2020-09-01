@@ -47,7 +47,7 @@ def sendsms(sms_token,receptor,message):
 
 
 
-def import_database_from_exel(filepath):
+def import_database_from_exel(filepath,filepath_invalid):
 
     conn = sqlite3.connect(DATABASE_FILE_PATH)
     cur = conn.cursor()
@@ -77,7 +77,7 @@ def import_database_from_exel(filepath):
         invalid_serial TEXT PRIMARY KEY)""")
     conn.commit()
     invalid_counter = 0
-    df = read_excel(filepath, 1)
+    df = read_excel(filepath_invalid, 0)
     for index, (failed_serial, ) in df.iterrows():   
         query = f'INSERT INTO invalids VALUES("{failed_serial}")'
         cur.execute(query)
@@ -104,5 +104,5 @@ def check_serial():
 
 if __name__ == "__main__":
     # sendsms(sms_token,"09392115688","تست ارسال به تلفن همراه")
-    import_database_from_exel('../data.xlsx')
+    import_database_from_exel('../data.xlsx','../invalid.xlsx')
     app.run("0.0.0.0",5000,debug=True)

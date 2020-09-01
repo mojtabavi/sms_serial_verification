@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02847419-9674-49e8-b587-05ed8bd7b7f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/normalize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/excelToDb.js" beforeDir="false" afterPath="$PROJECT_DIR$/excelToDb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Node.js.normalize.js">
@@ -69,7 +66,8 @@
       <option name="presentableId" value="Default" />
       <updated>1598951905224</updated>
       <workItem from="1598951907084" duration="125000" />
-      <workItem from="1598952210764" duration="1643000" />
+      <workItem from="1598952210764" duration="1738000" />
+      <workItem from="1598955112242" duration="1661000" />
     </task>
     <servers />
   </component>
@@ -109,21 +107,9 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1896" height="272" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1598953316721" />
-    <state x="0" y="209" width="1039" height="737" key="SettingsEditor" timestamp="1598953853509">
+    <state x="8" y="145" width="1039" height="737" key="SettingsEditor" timestamp="1598956907820">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="0" y="209" width="1039" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1598953853509" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/excelToDb.js</url>
-          <line>27</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="8" y="145" width="1039" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1598956907820" />
   </component>
 </project>
