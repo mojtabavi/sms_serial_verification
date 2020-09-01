@@ -28,13 +28,37 @@ function convert_excel_to_db() {
                     return console.log(err.message);
                 }
                 // get the last insert id
-                console.log(`A row has been inserted with rowid ${this.lastID}`);
+                console.log(`A row has been inserted into serials with rowid ${this.lastID}`);
             });
             // console.log(sql)
             // db.run(sql)
         });
-        db.close();
+
+        db.run("DROP TABLE IF EXISTS invalids");
+        db.run("CREATE TABLE IF NOT EXISTS invalids (invalid_serial TEXT PRIMARY KEY)");
+
+        xlsxFile("../invalid.xlsx").then((rows) => {
+            const header = rows.splice(0, 1);
+            rows.forEach(row => {
+                // let placeholders = `(${row.map((value) => value).join(',')})`
+                // let sql = "INSERT INTO serials VALUES " + placeholders;
+                // normalize the start and end serials
+                row[0] = normalize(row[0]);
+                //
+                db.run(`INSERT INTO invalids VALUES(?)`, row, function (err) {
+                    if (err) {
+                        return console.log(err.message);
+                    }
+                    // get the last insert id
+                    console.log(`A row has been inserted into invalids with rowid ${this.lastID}`);
+                });
+                // console.log(sql)
+                // db.run(sql)
+            });
+
+            db.close();
+        });
     });
 }
 
-module.exports = convert_excel_to_db
+module.exports = convert_excel_to_db;
