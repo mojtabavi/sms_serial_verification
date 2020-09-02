@@ -1,15 +1,82 @@
-from flask import Flask,jsonify,request
-from config import Sendtoken, LineNumber, DATABASE_FILE_PATH
+from flask import Flask, jsonify, Response, request, redirect, url_for, request, session, abort
+from flask_login import LoginManager, UserMixin,login_required, login_user, logout_user
 from pandas import read_excel
 import re
 import requests
 import sqlite3
+import config
 app = Flask(__name__)
 
-sms_token = None
+app.config.update(
+    SECRET_KEY= config.SECRET_KEY
+)
+
+# flask-login
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
+# silly user model
+class User(UserMixin):
+
+    def __init__(self, id):
+        self.id = id
+
+    def __repr__(self):
+        return "%d" % (self.id)
 
 
+# create some users with ids 1 to 20
+user = User(0)
 
+
+# some protected url
+@app.route('/')
+@login_required
+def home():
+    return Response("Hello World!")
+
+# somewhere to login
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == 'POST': #TODO stop the bruteforce
+        username = request.form['username']
+        password = request.form['password']
+        if password == config.PASSWORD and username == config.USERNAME:
+            login_user(user)
+            return redirect('/') 
+        else:
+            return abort(401)
+    else:
+        return Response('''
+        <form action="" method="post">
+            <p><input type=text name=username>
+            <p><input type=password name=password>
+            <p><input type=submit value=Login>
+        </form>
+        ''')
+
+
+# somewhere to logout
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return Response('<p>Logged out</p>')
+
+
+# handle login failed
+@app.errorhandler(401)
+def page_not_found(error):
+    return Response('<p>Login failed</p>')
+
+
+# callback to reload the user object
+@login_manager.user_loader
+def load_user(userid):
+    return User(userid)
 
 def get_token(apikey,secretkey):
     url = "https://RestfulSms.com/api/Token"
@@ -23,12 +90,12 @@ def sendsms(sms_token,receptor,message):
         # sms_token = get_token(UserApiKey, SecretKey)
         url = "https://RestfulSms.com/api/MessageSend"
         header = {
-            'x-sms-ir-secure-token':Sendtoken
+            'x-sms-ir-secure-token':config.Sendtoken
         }
         payload = {
             "Messages": message,
             "MobileNumbers": receptor,
-            "LineNumber": LineNumber,
+            "LineNumber": config.LineNumber,
             "SendDateTime": "",
             "CanContinueInCaseOfError": "false",
         }
@@ -37,7 +104,7 @@ def sendsms(sms_token,receptor,message):
 
 def import_database_from_exel(filepath,filepath_invalid):
 
-    conn = sqlite3.connect(DATABASE_FILE_PATH)
+    conn = sqlite3.connect(config.DATABASE_FILE_PATH)
     cur = conn.cursor()
     cur.execute('DROP TABLE IF EXISTS serials')
     cur.execute("""CREATE TABLE IF NOT EXISTS serials (
@@ -78,20 +145,20 @@ def import_database_from_exel(filepath,filepath_invalid):
     conn.close()
 
 
-def normalize_string(str):
+def normalize_string(data):
     from_char = "۱۲۳۴۵۶۷۸۹۰"
     to_char = "1234567890"
     for i in range(len(from_char)):
-        str = str.replace(from_char[i],to_char[i])
-    str = str.upper()
-    str = re.sub(r'\W+', '',str)
-    return str
+        data = data.replace(from_char[i],to_char[i])
+    data = data.upper()
+    data = re.sub(r'\W+', '',data)
+    return data
 
 def check_serial(serial):
     """this function will get one serial number and return  appropriate 
     answer to that , after consuling the db """
 
-    conn = sqlite3.connect(DATABASE_FILE_PATH)
+    conn = sqlite3.connect(config.DATABASE_FILE_PATH)
     cur = conn.cursor()
 
     query = f"SELECT * FROM invalids WHERE invalid_serial == '{serial}'"
