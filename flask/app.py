@@ -1,20 +1,32 @@
-from flask import Flask, jsonify, Response, request, redirect, url_for, request, session, abort
+import requests
+import re
+import os
+from flask import Flask, flash, jsonify, Response, request, redirect, url_for, request, session, abort
 from flask_login import LoginManager, UserMixin,login_required, login_user, logout_user
 from pandas import read_excel
+from werkzeug.utils import secure_filename
 import re
 import requests
 import sqlite3
 import config
 app = Flask(__name__)
 
-app.config.update(
-    SECRET_KEY= config.SECRET_KEY
-)
+UPLOAD_FOLDER = config.UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = config.ALLOWED_EXTENSIONS
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # flask-login
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+app.config.update(
+    SECRET_KEY= config.SECRET_KEY
+)
 
 # silly user model
 class User(UserMixin):
@@ -31,10 +43,39 @@ user = User(0)
 
 
 # some protected url
-@app.route('/')
+@app.route('/',methods=['GET','POST'])
 @login_required
 def home():
-    return Response("Hello World!")
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        fileinvalid = request.files['filein']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '' or fileinvalid.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename) and allowed_file(fileinvalid.filename):
+            filename = secure_filename(file.filename)
+            filenameinvalid = secure_filename(fileinvalid.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            fileinvalid_path = os.path.join(app.config['UPLOAD_FOLDER'], filenameinvalid)
+            file.save(file_path)
+            file.save(fileinvalid_path)
+            import_database_from_exel(file_path,fileinvalid_path)
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=file name=filein>
+      <input type=submit value=Upload>
+    </form>
+    '''
 
 # somewhere to login
 
@@ -192,5 +233,5 @@ def process():
 
 if __name__ == "__main__":
     # sendsms(sms_token,"09392115688","تست ارسال به تلفن همراه")
-    import_database_from_exel('../data.xlsx','../invalid.xlsx')
+    # import_database_from_exel('../data.xlsx','../invalid.xlsx')
     app.run("0.0.0.0",5000,debug=True)
