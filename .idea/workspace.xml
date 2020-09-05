@@ -20,11 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82449163-86cb-46a0-8da0-9789107fde1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nodejs/check_serial.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/check_serial.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodejs/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodejs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodejs/routes/apiv1.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/routes/apiv1.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599297282843</updated>
-      <workItem from="1599297283893" duration="5933000" />
+      <workItem from="1599297283893" duration="6738000" />
     </task>
     <servers />
   </component>
@@ -88,6 +86,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="417" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1599298528202" />
+    <state x="645" y="347" width="619" height="419" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599306792611">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="645" y="347" width="619" height="419" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1599306792611" />
     <state x="542" y="270" width="826" height="573" key="DBNavigator.DatasetFilterDialog" timestamp="1599298844782">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -96,10 +98,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="492" y="210" width="926" height="693" key="DBNavigator.ProjectSettingsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1599298835713" />
-    <state x="744" y="380" width="422" height="353" key="DBNavigator.ResultSetRecordViewerDialog" timestamp="1599306219882">
+    <state x="744" y="380" width="422" height="353" key="DBNavigator.ResultSetRecordViewerDialog" timestamp="1599306815634">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="744" y="380" width="422" height="353" key="DBNavigator.ResultSetRecordViewerDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1599306219882" />
+    <state x="744" y="380" width="422" height="353" key="DBNavigator.ResultSetRecordViewerDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1599306815634" />
     <state x="737" y="313" width="426" height="493" key="FileChooserDialogImpl" timestamp="1599298832189">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
