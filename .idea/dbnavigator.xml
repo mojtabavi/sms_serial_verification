@@ -31,7 +31,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="88794b46-d1b6-4386-8aa6-79e7c6ae5fde">
-      <console name="sqlite" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM invalids]]></console>
+      <console name="sqlite" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM serials]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
