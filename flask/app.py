@@ -86,11 +86,13 @@ def get_token(apikey,secretkey):
     r = requests.post(url,data=payload)
     return(r.json()['TokenKey'])
 
-def sendsms(sms_token,receptor,message):
-        # sms_token = get_token(UserApiKey, SecretKey)
+def sendsms(receptor,message):
+        sms_token = get_token(config.UserApiKey, config.SecretKey)
+        print(sms_token)
+
         url = "https://RestfulSms.com/api/MessageSend"
         header = {
-            'x-sms-ir-secure-token':config.Sendtoken
+            'x-sms-ir-secure-token':sms_token
         }
         payload = {
             "Messages": message,
@@ -178,13 +180,11 @@ def process():
     """
     This is a callback from sms.ir
     """
-
     message = normalize_string(request.args.get('text'))
     sender = request.args.get('from') 
     print(f'received {message} from {sender}') #TODO logging
-
     answer = check_serial(message)
-
+    sendsms(sender,answer)
     data = {"message":"processed"}
     return jsonify(data), 200
 
@@ -193,5 +193,4 @@ def process():
 if __name__ == "__main__":
     # sendsms(sms_token,"09392115688","تست ارسال به تلفن همراه")
     import_database_from_exel('../data.xlsx','../invalid.xlsx')
-    print(check_serial('JJ1000002'))
     app.run("0.0.0.0",5000,debug=True)
