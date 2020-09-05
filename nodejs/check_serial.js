@@ -22,7 +22,7 @@ function checkSerial(serial){
         }
     });
 
-    let sql = `SELECT * FROM invalids WHERE invalid_serial == "${serial}"`
+    let sql = `SELECT * FROM invalids WHERE invalid_serial = "${serial}"`
     db.all(sql, [], (err, rows) => {
         if (err) {
             return console.error(err.message);

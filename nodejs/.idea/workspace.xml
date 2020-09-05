@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02847419-9674-49e8-b587-05ed8bd7b7f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.~lock.data.xlsx#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +39,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/p/Node.js_Authentication_API_with_Email_Verification" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -70,6 +70,7 @@
       <workItem from="1598955112242" duration="2538000" />
       <workItem from="1598957965806" duration="457000" />
       <workItem from="1598997973088" duration="2759000" />
+      <workItem from="1599044947477" duration="614000" />
     </task>
     <servers />
   </component>
@@ -93,6 +94,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="417" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1598952016946" />
+    <state x="742" y="310" width="426" height="493" key="FileChooserDialogImpl" timestamp="1599045601222">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="742" y="310" width="426" height="493" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1599045601222" />
     <state width="1896" height="272" key="GridCell.Tab.0.bottom" timestamp="1598953316721">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
