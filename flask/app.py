@@ -46,36 +46,49 @@ user = User(0)
 @app.route('/',methods=['GET','POST'])
 @login_required
 def home():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        fileinvalid = request.files['filein']
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        if file.filename == '' or fileinvalid.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename) and allowed_file(fileinvalid.filename):
+    data = []
+    if 'files[]' not in request.files:
+        flash('No file part')
+
+
+    files = request.files.getlist('files[]')
+
+    for file in files:
+        if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            filenameinvalid = secure_filename(fileinvalid.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            fileinvalid_path = os.path.join(app.config['UPLOAD_FOLDER'], filenameinvalid)
             file.save(file_path)
-            file.save(fileinvalid_path)
-            import_database_from_exel(file_path,fileinvalid_path)
+            data.append(file_path)
+
+    if(len(data) == 1):
+        return '''
+        <h3>one file missing</h3>
+        '''
+    if(len(data) == 2):
+        import_database_from_exel(data[0],data[1])
+        os.remove(data[0])
+        os.remove(data[1])
+
     return '''
     <!doctype html>
     <title>Upload new File</title>
     <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=file name=filein>
-      <input type=submit value=Upload>
+    <form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+    <p>
+    <input type="file" name="files[]" multiple="true" autocomplete="off" required>
+    </p>
+    </dl>
+    <p>
+    <input type="submit" value="Submit">
+    </p>
     </form>
-    '''
+'''
+
+
+
+
+
 
 # somewhere to login
 
