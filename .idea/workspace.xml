@@ -16,18 +16,19 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82449163-86cb-46a0-8da0-9789107fde1c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/nodejs/routes/uploadFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodejs/.fandogh/config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodejs/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodejs/excelToDb.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/excelToDb.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nodejs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodejs/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodejs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,9 @@
       <updated>1599297282843</updated>
       <workItem from="1599297283893" duration="6930000" />
       <workItem from="1599324874674" duration="1448000" />
-      <workItem from="1599346843485" duration="3089000" />
+      <workItem from="1599346843485" duration="3174000" />
+      <workItem from="1599350570191" duration="346000" />
+      <workItem from="1599382895837" duration="67000" />
     </task>
     <servers />
   </component>
@@ -87,7 +90,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
