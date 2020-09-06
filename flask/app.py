@@ -1,7 +1,7 @@
 import requests
 import re
 import os
-from flask import Flask, flash, jsonify, Response, request, redirect, url_for, request, session, abort
+from flask import Flask, flash, jsonify, Response, request, redirect, url_for, request, session, abort, render_template
 from flask_login import LoginManager, UserMixin,login_required, login_user, logout_user
 from pandas import read_excel
 from werkzeug.utils import secure_filename
@@ -69,7 +69,7 @@ def home():
         os.remove(data[0])
         os.remove(data[1])
 
-    return '''
+    html_return = '''
     <!doctype html>
     <title>Upload new File</title>
     <h1>Upload new File</h1>
@@ -84,6 +84,7 @@ def home():
     </p>
     </form>
 '''
+    return render_template('index.html')
 
 
 
@@ -104,13 +105,14 @@ def login():
         else:
             return abort(401)
     else:
-        return Response('''
+        html_return = Response('''
         <form action="" method="post">
             <p><input type=text name=username>
             <p><input type=password name=password>
             <p><input type=submit value=Login>
         </form>
         ''')
+        return  render_template('login.html')
 
 
 # somewhere to logout
