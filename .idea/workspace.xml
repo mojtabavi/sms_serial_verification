@@ -25,11 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82449163-86cb-46a0-8da0-9789107fde1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodejs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodejs/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="82449163-86cb-46a0-8da0-9789107fde1c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,7 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/p/node.js_sms_authentication" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -79,6 +75,7 @@
       <workItem from="1599346843485" duration="3174000" />
       <workItem from="1599350570191" duration="346000" />
       <workItem from="1599382895837" duration="67000" />
+      <workItem from="1599393338357" duration="11000" />
     </task>
     <servers />
   </component>
@@ -130,10 +127,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="744" y="380" width="422" height="353" key="DBNavigator.ResultSetRecordViewerDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1599306815634" />
-    <state x="737" y="313" width="426" height="493" key="FileChooserDialogImpl" timestamp="1599298832189">
+    <state x="737" y="313" width="426" height="493" key="FileChooserDialogImpl" timestamp="1599393347012">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="737" y="313" width="426" height="493" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1599298832189" />
+    <state x="737" y="313" width="426" height="493" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1599393347012" />
     <state width="1870" height="336" key="GridCell.Tab.0.bottom" timestamp="1599307252487">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

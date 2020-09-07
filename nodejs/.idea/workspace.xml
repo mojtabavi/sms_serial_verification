@@ -20,7 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02847419-9674-49e8-b587-05ed8bd7b7f1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +35,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
+  </component>
   <component name="ProjectId" id="1gu6051CO7Kq4EBsXa4WE0C7bxD" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -39,7 +49,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/p/Node.js_Authentication_API_with_Email_Verification" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -71,6 +81,10 @@
       <workItem from="1598957965806" duration="457000" />
       <workItem from="1598997973088" duration="2759000" />
       <workItem from="1599044947477" duration="614000" />
+      <workItem from="1599394753277" duration="1971000" />
+      <workItem from="1599407095231" duration="617000" />
+      <workItem from="1599423160801" duration="18000" />
+      <workItem from="1599500507552" duration="3788000" />
     </task>
     <servers />
   </component>
@@ -94,10 +108,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="417" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1598952016946" />
-    <state x="742" y="310" width="426" height="493" key="FileChooserDialogImpl" timestamp="1599045601222">
+    <state x="742" y="310" width="426" height="493" key="FileChooserDialogImpl" timestamp="1599423176844">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="742" y="310" width="426" height="493" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1599045601222" />
+    <state x="742" y="310" width="426" height="493" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1599423176844" />
     <state width="1896" height="272" key="GridCell.Tab.0.bottom" timestamp="1598953316721">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -118,5 +132,9 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="8" y="145" width="1039" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1598956907820" />
+    <state x="684" y="460" width="542" height="193" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1599504829529">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="684" y="460" width="542" height="193" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1599504829529" />
   </component>
 </project>
