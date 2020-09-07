@@ -10,7 +10,6 @@ const main = require('./routes/apiv1');
 const upload = require('./routes/uploadFile');
 const home = require('./routes/home');
 const path = require("path");
-const rateLimit = require("express-rate-limit");
 
 // Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 // see https://expressjs.com/en/guide/behind-proxies.html
@@ -59,21 +58,17 @@ app.use((req, res, next) => {
     next();
 });
 
-const apiLimiter = rateLimit({
-    max: 5
-});
-
 // only apply to requests that begin with /api/
 
 
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 app.set("views",path.join(__dirname,"views"))
 app.set("view engine","ejs")
+app.use("/",home);
 app.use("/v1/process",main);
 app.use("/file",upload);
-app.use("/file",apiLimiter);
-app.use("/",home);
 
 
 

@@ -10,7 +10,11 @@ const isAdmin = require('./authMiddleware').isAdmin;
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login-failure', successRedirect: 'login-success' }));
 
-router.post('/register', (req, res, next) => {
+/*
+    User Register disable permanently
+ */
+
+/*router.post('/register', (req, res, next) => {
     const saltHash = genPassword(req.body.pw);
 
     const salt = saltHash.salt;
@@ -29,10 +33,10 @@ router.post('/register', (req, res, next) => {
         });
 
     res.redirect('/login');
-});
+});*/
 
 router.get('/', isAuth, (req, res, next) => {
-    res.send('<h1>Home</h1><p>Please <a href="/register">register</a></p>');
+    res.render('index');
 });
 
 // When you visit http://localhost:3000/login, you will see "Login Page"
@@ -48,6 +52,7 @@ router.get('/login', (req, res, next) => {
 });
 
 // When you visit http://localhost:3000/register, you will see "Register Page"
+/*
 router.get('/register', (req, res, next) => {
 
     const form = '<h1>Register Page</h1><form method="post" action="register">\
@@ -58,6 +63,7 @@ router.get('/register', (req, res, next) => {
     res.send(form);
 
 });
+*/
 
 /**
  * Lookup how to authenticate users on routes with Local Strategy
@@ -69,7 +75,7 @@ router.get('/register', (req, res, next) => {
 // Visiting this route logs the user out
 router.get('/logout', (req, res, next) => {
     req.logout();
-    res.redirect('/protected-route');
+/*    res.redirect('/protected-route');*/
 });
 
 router.get('/login-success', (req, res, next) => {
