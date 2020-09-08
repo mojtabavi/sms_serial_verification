@@ -1,7 +1,7 @@
 const xlsxFile = require("read-excel-file/node");
 const mysqldb = require('mysql');
 const normalize = require('./normalize');
-require('dotenv').config();
+
 
 function getJsDateFromExcel(excelDate) { return new Date((excelDate - (25567 + 2))*86400*1000); }
 

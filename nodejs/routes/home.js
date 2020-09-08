@@ -11,6 +11,7 @@ const checkSerial = require("../check_serial")
 
 
 
+
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login-failure', successRedirect: 'login-success' }));
 
 router.post('/', isAuth, (req, res, next) => {

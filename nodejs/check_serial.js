@@ -13,22 +13,27 @@ function checkSerial(serial) {
         });
         db.connect();
 
-        db.query(`SELECT * FROM serials WHERE start_serial < "${serial}" AND end_serial > "${serial}";`, function (error, results, fields) {
-            if (error) reject(error);
-            if (results.length !== 0) {
-                resolve("I found your serial");
-            }
-        });
+
 
         db.query(`SELECT * FROM invalids WHERE invalid_serial = "${serial}"`, function (error, results, fields) {
             if (error) reject(error);
             if (results.length !== 0) {
-                resolve("the serial is among failed ones");
-            }
-            else {
-                resolve("Your Serial is not in db");
+                resolve("دستگاه شما نامعتبر است!!!");
             }
         });
+        db.query(`SELECT * FROM serials WHERE start_serial < "${serial}" AND end_serial > "${serial}";`, function (error, results, fields) {
+            if (error) reject(error);
+            if (results.length !== 0) {
+                const deviceModel = results[0].description;
+                const answer = "دستگاه شما معتبر می باشد مدل دستگاه: " + deviceModel;
+                resolve(answer);
+            }
+            else{
+                resolve("متاسفانه سریال دستگاه یافت نشد با پشتیانی تماس حاصل فرمایید");
+            }
+        });
+
+
         db.end();
     });
 }
