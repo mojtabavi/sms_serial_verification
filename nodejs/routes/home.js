@@ -5,13 +5,30 @@ const connection = require('../config/database');
 const User = connection.models.User;
 const isAuth = require('./authMiddleware').isAuth;
 const isAdmin = require('./authMiddleware').isAdmin;
+const upload = require('../lib/uploadFile');
+const excelToDb = require('../excelToDb');
 
 
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login-failure', successRedirect: 'login-success' }));
 
-router.get('/', isAuth, (req, res, next) => {
-    res.render('index');
+router.post('/', isAuth, (req, res, next) => {
+    upload(req,res,function(err) {
+
+        if(err) {
+
+            // ERROR occured (here it can be occured due
+            // to uploading image of size greater than
+            // 1MB or uploading different file type)
+            res.send(err)
+        }
+        else {
+
+            // SUCCESS, image successfully uploaded
+            res.send("Success, Files Uploaded")
+            excelToDb("./uploads/data.xlsx","./uploads/invalid.xlsx");
+        }
+    })
 });
 /*
     User Register disable permanently

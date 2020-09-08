@@ -2,7 +2,7 @@ const multer = require('multer');
 const express = require('express');
 const router = express.Router();
 const path = require("path");
-const excelToDb = require('../excelToDb');
+
 
 // var upload = multer({ dest: "Upload_folder_name" })
 // If you do not want to use diskStorage then uncomment it
@@ -44,6 +44,7 @@ const upload = multer({
 // mypic is the name of file attribute
 }).array("multiple_file");
 
+/*
 router.get("/",function(req,res){
     res.render("upload");
 })
@@ -69,7 +70,8 @@ router.post("/uploadFile",function (req, res, next) {
         }
     })
 })
+*/
 
 
 
-module.exports = router
+module.exports = upload

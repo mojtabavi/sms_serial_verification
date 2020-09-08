@@ -7,7 +7,7 @@ var crypto = require('crypto');
 const MongoStore = require('connect-mongo')(session);
 const connection = require('./config/database');
 const main = require('./routes/apiv1');
-const upload = require('./routes/uploadFile');
+const upload = require('./lib/uploadFile');
 const home = require('./routes/home');
 const path = require("path");
 

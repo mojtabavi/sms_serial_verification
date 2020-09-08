@@ -21,14 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="02847419-9674-49e8-b587-05ed8bd7b7f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/undraw_posting_photo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excelToDb.js" beforeDir="false" afterPath="$PROJECT_DIR$/excelToDb.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/blank.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/forgot-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/forgot-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/uploadFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uploadFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/data.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/invalid.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +56,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
   </component>
   <component name="RunManager" selected="Node.js.normalize.js">
     <configuration name="Unnamed" type="NodeJSConfigurationType" nameIsGenerated="true" working-dir="$PROJECT_DIR$">
@@ -88,7 +93,8 @@
       <workItem from="1599407095231" duration="617000" />
       <workItem from="1599423160801" duration="18000" />
       <workItem from="1599500507552" duration="8230000" />
-      <workItem from="1599520968423" duration="2262000" />
+      <workItem from="1599520968423" duration="2307000" />
+      <workItem from="1599542411562" duration="702000" />
     </task>
     <servers />
   </component>
