@@ -10,6 +10,9 @@ const isAdmin = require('./authMiddleware').isAdmin;
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login-failure', successRedirect: 'login-success' }));
 
+router.get('/', isAuth, (req, res, next) => {
+    res.render('index');
+});
 /*
     User Register disable permanently
  */
@@ -42,12 +45,7 @@ router.get('/', isAuth, (req, res, next) => {
 // When you visit http://localhost:3000/login, you will see "Login Page"
 router.get('/login', (req, res, next) => {
 
-    const form = '<h1>Login Page</h1><form method="POST" action="/login">\
-    Enter Username:<br><input type="text" name="uname">\
-    <br>Enter Password:<br><input type="password" name="pw">\
-    <br><br><input type="submit" value="Submit"></form>';
-
-    res.send(form);
+    res.render("login")
 
 });
 
@@ -75,7 +73,7 @@ router.get('/register', (req, res, next) => {
 // Visiting this route logs the user out
 router.get('/logout', (req, res, next) => {
     req.logout();
-/*    res.redirect('/protected-route');*/
+    res.status(200).render("login")
 });
 
 router.get('/login-success', (req, res, next) => {
