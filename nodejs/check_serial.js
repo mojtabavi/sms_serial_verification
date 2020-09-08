@@ -1,25 +1,36 @@
 const config = require("./config");
-const sqlite3 = require("sqlite3").verbose();
-const sqlite = require("sqlite-sync");
+const mysqldb = require('mysql');
+require('dotenv').config();
 
-function checkSerial(serial){
+function checkSerial(serial) {
+    return new Promise(function (resolve, reject)
+    {
+        const db = mysqldb.createConnection({
+            host: process.env.MYSQL_HOST,
+            user: process.env.MYSQL_USERNAME,
+            password: process.env.MYSQL_PASSWORD,
+            database: process.env.MYSQL_DB_NAME,
+        });
+        db.connect();
 
-    sqlite.connect('../data.sqlite');
+        db.query(`SELECT * FROM serials WHERE start_serial < "${serial}" AND end_serial > "${serial}";`, function (error, results, fields) {
+            if (error) reject(error);
+            if (results.length !== 0) {
+                resolve("I found your serial");
+            }
+        });
 
-    let query = sqlite.run(`SELECT * FROM invalids WHERE invalid_serial = "${serial}"`);
-    if (query.length === 1) {
-        sqlite.close();
-        return "the serial is among failed ones";
-    }
-    query = sqlite.run(`SELECT * FROM serials WHERE start_serial < "${serial}" AND end_serial > "${serial}";`);
-    if (query.length === 1) {
-        sqlite.close();
-        return  "I found your serial";
-    }
-    sqlite.close();
-    return "Your Serial is not in db"
-
-
+        db.query(`SELECT * FROM invalids WHERE invalid_serial = "${serial}"`, function (error, results, fields) {
+            if (error) reject(error);
+            if (results.length !== 0) {
+                resolve("the serial is among failed ones");
+            }
+            else {
+                resolve("Your Serial is not in db");
+            }
+        });
+        db.end();
+    });
 }
 
 module.exports = checkSerial

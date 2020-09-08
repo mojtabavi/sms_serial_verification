@@ -9,7 +9,7 @@ router.get("/",(req,res) =>{
     const message = normalize(req.query.text);
     const sender = req.query.from;
     console.log(`receive ${message} from ${sender}`);
-    sendMessage(sender, checkSerial(message));
+    checkSerial(message).then(res => sendMessage(sender,res)).catch(err => sendMessage(sender,"در حال حاضر قادر به پاسخگویی نیستیم لطفا مجددا تلاش فرمایید"))
     res.status(200).send({message:'processed'});
 });
 
