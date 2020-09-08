@@ -7,6 +7,7 @@ const isAuth = require('./authMiddleware').isAuth;
 const isAdmin = require('./authMiddleware').isAdmin;
 const upload = require('../lib/uploadFile');
 const excelToDb = require('../excelToDb');
+const checkSerial = require("../check_serial")
 
 
 
@@ -20,15 +21,23 @@ router.post('/', isAuth, (req, res, next) => {
             // ERROR occured (here it can be occured due
             // to uploading image of size greater than
             // 1MB or uploading different file type)
-            res.send(err)
+            res.status(401).render('index',{message:err,alert:"warning"});
         }
         else {
 
             // SUCCESS, image successfully uploaded
-            res.send("Success, Files Uploaded")
+
             excelToDb("./uploads/data.xlsx","./uploads/invalid.xlsx");
+            res.status(200).render('index',{message:"two Files Uploaded successfully",alert:"success"});
         }
     })
+});
+
+router.post('/getCheckSerial', isAuth, (req, res, next) => {
+        checkSerial(req.body.serial)
+            .then(result =>  {res.status(200).render('index',{message: result ,alert:"info"})
+                                console.log(result)})
+            .catch(err => res.status(401).render('index',{message: err ,alert:"warning"}))
 });
 /*
     User Register disable permanently
@@ -56,7 +65,7 @@ router.post('/', isAuth, (req, res, next) => {
 });*/
 
 router.get('/', isAuth, (req, res, next) => {
-    res.render('index');
+    res.render('index',{message:undefined,alert:"warning"});
 });
 
 // When you visit http://localhost:3000/login, you will see "Login Page"
