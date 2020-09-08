@@ -7,7 +7,7 @@ from pandas import read_excel
 from werkzeug.utils import secure_filename
 import re
 import requests
-import sqlite3
+import mysql.connector as mysqldb
 import config
 app = Flask(__name__)
 
@@ -19,6 +19,14 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
+db = mysqldb.connect(
+    host = config.MYSQL_HOST,
+    user = config.MYSQL_USERNAME,
+    passwd = config.MYSQL_PASSWORD,
+    database = config.MYSQL_DB_NAME,
+    auth_plugin='mysql_native_password'
+)
 
 def allowed_file(filename):
     return '.' in filename and \

@@ -538,6 +538,12 @@
   <!-- Page level custom scripts -->
   <script src="/static/js/demo/chart-area-demo.js"></script>
   <script src="/static/js/demo/chart-pie-demo.js"></script>
+    <script>
+        $('#inputGroupFile01').on('change',function (){
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
 
 </body>
 
