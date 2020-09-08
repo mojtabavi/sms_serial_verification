@@ -1,18 +1,24 @@
 const xlsxFile = require("read-excel-file/node");
-const sqlite3 = require("sqlite3").verbose();
-const normalize = require('./normalize')
+const mysqldb = require('mysql');
+const normalize = require('./normalize');
+require('dotenv').config();
+
+function getJsDateFromExcel(excelDate) { return new Date((excelDate - (25567 + 2))*86400*1000); }
 
 function convert_excel_to_db(validPath,invalidPath) {
-    let db = new sqlite3.Database("./data.sqlite", sqlite3.OPEN_READWRITE, (err) => {
-        if (err) {
-            console.error(err.message);
-        } else {
-            console.log("Connected to the SQLite database.");
-        }
-    });
 
-    db.run("DROP TABLE IF EXISTS serials");
-    db.run("CREATE TABLE IF NOT EXISTS serials (id INTEGER PRIMARY KEY,ref TEXT,desc TEXT,start_serial TEXT,end_serial TEXT,date DATE);");
+    const db = mysqldb.createConnection({
+        host     : process.env.MYSQL_HOST,
+        user     : process.env.MYSQL_USERNAME,
+        password : process.env.MYSQL_PASSWORD,
+        database : process.env.MYSQL_DB_NAME,
+    });
+    db.connect();
+    db.query("DROP TABLE IF EXISTS serials");
+    db.query("CREATE TABLE serials (id INTEGER PRIMARY KEY,ref VARCHAR(200),description VARCHAR(300),start_serial CHAR(30),end_serial CHAR(30),date DATE);",function (error, results, fields) {
+        if (error) throw error;
+        console.log(results);
+    });
 
     xlsxFile(validPath).then((rows) => {
         const header = rows.splice(0, 1);
@@ -22,20 +28,19 @@ function convert_excel_to_db(validPath,invalidPath) {
             // normalize the start and end serials
             row[3] = normalize(row[3])
             row[4] = normalize(row[4])
+            row[5] = getJsDateFromExcel(row[5])
             //
-            db.run(`INSERT INTO serials VALUES(?,?,?,?,?,?)`, row, function (err) {
-                if (err) {
-                    return console.log(err.message);
-                }
-                // get the last insert id
+            db.query(`INSERT INTO serials VALUES(?,?,?,?,?,?)`, row, function (error, results, fields) {
+                if (error) throw error;
                 console.log(`A row has been inserted into serials with rowid ${this.lastID}`);
+                // connected!
             });
             // console.log(sql)
             // db.run(sql)
         });
 
-        db.run("DROP TABLE IF EXISTS invalids");
-        db.run("CREATE TABLE IF NOT EXISTS invalids (invalid_serial TEXT PRIMARY KEY)");
+        db.query("DROP TABLE IF EXISTS invalids");
+        db.query("CREATE TABLE  invalids (invalid_serial CHAR(30) PRIMARY KEY)");
 
         xlsxFile(invalidPath).then((rows) => {
             const header = rows.splice(0, 1);
@@ -45,18 +50,16 @@ function convert_excel_to_db(validPath,invalidPath) {
                 // normalize the start and end serials
                 row[0] = normalize(row[0]);
                 //
-                db.run(`INSERT INTO invalids VALUES(?)`, row, function (err) {
-                    if (err) {
-                        return console.log(err.message);
-                    }
-                    // get the last insert id
-                    console.log(`A row has been inserted into invalids with rowid ${this.lastID}`);
+                db.query(`INSERT INTO invalids VALUES(?)`, row, function (error, results, fields) {
+                    if (error) throw error;
+                    // connected!
+                    console.log(`A row has been inserted into invalids with rowid ${results.insertId}`);
                 });
                 // console.log(sql)
                 // db.run(sql)
             });
 
-            db.close();
+            db.end();
         });
     });
 }

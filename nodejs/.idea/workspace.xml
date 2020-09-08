@@ -21,6 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="02847419-9674-49e8-b587-05ed8bd7b7f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../flask/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excelToDb.js" beforeDir="false" afterPath="$PROJECT_DIR$/excelToDb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +94,7 @@
       <workItem from="1599542411562" duration="1570000" />
       <workItem from="1599549201782" duration="51000" />
       <workItem from="1599554946776" duration="618000" />
+      <workItem from="1599559278425" duration="4845000" />
     </task>
     <servers />
   </component>

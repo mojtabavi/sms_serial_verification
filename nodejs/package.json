@@ -23,6 +23,7 @@
     "jsdom": "^16.4.0",
     "mongoose": "^5.10.3",
     "multer": "^1.4.2",
+    "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",

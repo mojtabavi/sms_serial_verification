@@ -179,6 +179,7 @@ def import_database_from_exel(filepath,filepath_invalid):
     df = read_excel(filepath,0)
     serial_counter = 0
     for index,(line,ref,desc,start_serial,end_serial,date) in df.iterrows():
+        print(date)
         start_serial = normalize_string(start_serial)
         end_serial = normalize_string(end_serial)
         query = f'INSERT INTO serials VALUES("{line}", "{ref}", "{desc}", "{start_serial}", "{end_serial}", "{date}");'
