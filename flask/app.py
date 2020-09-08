@@ -163,16 +163,17 @@ def sendsms(receptor,message):
 
 def import_database_from_exel(filepath,filepath_invalid):
 
-    conn = sqlite3.connect(config.DATABASE_FILE_PATH)
-    cur = conn.cursor()
+
+    cur = db.cursor()
     cur.execute('DROP TABLE IF EXISTS serials')
-    cur.execute("""CREATE TABLE IF NOT EXISTS serials (
+    cur.execute("""CREATE TABLE serials (
         id INTEGER PRIMARY KEY,
-        ref TEXT,
-        desc TEXT,
-        start_serial TEXT,
-        end_serial TEXT,
+        ref VARCHAR(200),
+        description VARCHAR(200),
+        start_serial CHAR(30),
+        end_serial CHAR(30),
         date DATE);""")
+    db.commit()
         
     df = read_excel(filepath,0)
     serial_counter = 0
@@ -182,14 +183,14 @@ def import_database_from_exel(filepath,filepath_invalid):
         query = f'INSERT INTO serials VALUES("{line}", "{ref}", "{desc}", "{start_serial}", "{end_serial}", "{date}");'
         cur.execute(query)
         if serial_counter % 10 == 0:
-            conn.commit()
+            db.commit()
         serial_counter += 1
-    conn.commit()
+    db.commit()
 
     cur.execute('DROP TABLE IF EXISTS invalids')
-    cur.execute("""CREATE TABLE IF NOT EXISTS invalids (
-        invalid_serial TEXT PRIMARY KEY)""")
-    conn.commit()
+    cur.execute("""CREATE TABLE invalids (
+        invalid_serial CHAR(30) PRIMARY KEY)""")
+    db.commit()
     invalid_counter = 0
     df = read_excel(filepath_invalid, 0)
     for index, (failed_serial, ) in df.iterrows():   
@@ -197,11 +198,11 @@ def import_database_from_exel(filepath,filepath_invalid):
         cur.execute(query)
 
         if invalid_counter % 10 == 0:
-            conn.commit()
+            db.commit()
         invalid_counter += 1
-    conn.commit()
+    db.commit()
 
-    conn.close()
+    db.close()
 
 
 def normalize_string(data):
