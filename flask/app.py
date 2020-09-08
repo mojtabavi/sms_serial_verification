@@ -20,13 +20,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
-db = mysqldb.connect(
-    host = config.MYSQL_HOST,
-    user = config.MYSQL_USERNAME,
-    passwd = config.MYSQL_PASSWORD,
-    database = config.MYSQL_DB_NAME,
-    auth_plugin='mysql_native_password'
-)
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -162,6 +156,13 @@ def sendsms(receptor,message):
         print(r.json()["IsSuccessful"])
 
 def import_database_from_exel(filepath,filepath_invalid):
+    db = mysqldb.connect(
+        host=config.MYSQL_HOST,
+        user=config.MYSQL_USERNAME,
+        passwd=config.MYSQL_PASSWORD,
+        database=config.MYSQL_DB_NAME,
+        auth_plugin='mysql_native_password'
+    )
 
 
     cur = db.cursor()
@@ -218,18 +219,27 @@ def check_serial(serial):
     """this function will get one serial number and return  appropriate 
     answer to that , after consuling the db """
 
-    conn = sqlite3.connect(config.DATABASE_FILE_PATH)
-    cur = conn.cursor()
+    db = mysqldb.connect(
+        host=config.MYSQL_HOST,
+        user=config.MYSQL_USERNAME,
+        passwd=config.MYSQL_PASSWORD,
+        database=config.MYSQL_DB_NAME,
+        auth_plugin='mysql_native_password'
+    )
+    cur = db.cursor()
 
-    query = f"SELECT * FROM invalids WHERE invalid_serial == '{serial}'"
-    results = cur.execute(query)
-    if len(results.fetchall()):
+    query = f"SELECT * FROM invalids WHERE invalid_serial = '{serial}'"
+    cur.execute(query)
+    results = cur.fetchall()
+    if len(results) > 0:
         return "the serial is among failed ones" #TODO return better string
 
-    query = f"SELECT * FROM serials WHERE start_serial < '{serial}' AND end_serial > '{serial}' ;"
-    results = cur.execute(query)
-    if len(results.fetchall()) == 1:
-        return 'I found your serial' #TODO return better string 
+    query = f"SELECT * FROM serials WHERE start_serial <= '{serial}' AND end_serial >= '{serial}' ;"
+    cur.execute(query)
+    results = cur.fetchone()
+    if results:
+        desc = results[2]
+        return 'I found your serial in ' + desc
 
     return "it was not in the db"
 
@@ -251,4 +261,7 @@ def process():
 if __name__ == "__main__":
     # sendsms(sms_token,"09392115688","تست ارسال به تلفن همراه")
     # import_database_from_exel('../data.xlsx','../invalid.xlsx')
+    ss = ['JM101','JJ1000000','','1','A']
+    for s in ss:
+        print(check_serial(s))
     app.run("0.0.0.0",5000,debug=True)
