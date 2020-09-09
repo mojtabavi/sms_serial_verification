@@ -7,8 +7,8 @@ const isAuth = require('./authMiddleware').isAuth;
 const isAdmin = require('./authMiddleware').isAdmin;
 const upload = require('../lib/uploadFile');
 const excelToDb = require('../excelToDb');
-const checkSerial = require("../check_serial")
-
+const checkSerial = require("../check_serial");
+const dataSms = require("../lib/dataSms");
 
 
 
@@ -22,14 +22,22 @@ router.post('/', isAuth, (req, res, next) => {
             // ERROR occured (here it can be occured due
             // to uploading image of size greater than
             // 1MB or uploading different file type)
-            res.status(401).render('index',{message:err,alert:"warning"});
+            dataSms()
+                .then(data => res.status(401).render('index',{data:data, message:err,alert:"warning"}))
+                .catch(err => {console.log(err)
+                    res.render('index',{data:undefined, message:undefined, alert:"warning"});
+                })
         }
         else {
 
             // SUCCESS, image successfully uploaded
 
             excelToDb("./uploads/data.xlsx","./uploads/invalid.xlsx");
-            res.status(200).render('index',{message:"two Files Uploaded successfully",alert:"success"});
+            dataSms()
+                .then(data => res.status(200).render('index',{data:data, message:"two Files Uploaded successfully", alert:"success"}))
+                .catch(err => {console.log(err)
+                    res.render('index',{data:undefined, message:undefined, alert:"warning"});
+                })
         }
     })
 });
@@ -66,10 +74,14 @@ router.post('/getCheckSerial', isAuth, (req, res, next) => {
 });*/
 
 router.get('/', isAuth, (req, res, next) => {
-    res.render('index',{message:undefined,alert:"warning"});
+    dataSms()
+        .then(data => res.render('index',{data:data, message:undefined, alert:"warning"}))
+        .catch(err => {console.log(err)
+            res.render('index',{data:undefined, message:undefined, alert:"warning"});
+        })
 });
 
-// When you visit http://localhost:3000/login, you will see "Login Page"
+// When you visit http://localhost:5000/login, you will see "Login Page"
 router.get('/login', (req, res, next) => {
 
     res.render("login")
